@@ -1,0 +1,18 @@
+[root@server2 ~]# cd LABs
+[root@server2 LABs]# git clone https://github.com/brayanlee/website.git
+[root@server2 LABs]# cd website
+[root@server2 website]# ls
+[root@server2 website]# vi Dockerfile_web
+[root@server2 website]# docker build -f Dockerfile_web -t myhttp:2.0 .
+
+[root@server2 website]# docker run -d -p 8181:80 --name myapacheserver2 myhttp:2.0
+[root@server2 website]# docker exec -it myapacheserver2 bash
+
+root@216c892f5f10:/var/www/html# vi index.html
+root@216c892f5f10:/var/www/html# exit
+[root@server2 website]# docker commit myapacheserver2 lisemara/my-http:2.0
+
+[root@server2 website]# docker images | grep lisemara
+
+
+[root@server2 website]# docker push lisemara/my-http:2.0
