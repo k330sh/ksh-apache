@@ -5,14 +5,15 @@
 [root@server2 website]# vi Dockerfile_web
 [root@server2 website]# docker build -f Dockerfile_web -t myhttp:2.0 .
 
-[root@server2 website]# docker run -d -p 8181:80 --name myapacheserver2 myhttp:2.0
-[root@server2 website]# docker exec -it myapacheserver2 bash
+[root@server2 website]# docker run -d -p 8230:80 --name myapacheserver4 myhttp:2.0
+[root@server2 website]# docker exec -it myapacheserver4 bash
 
 root@216c892f5f10:/var/www/html# vi index.html
 root@216c892f5f10:/var/www/html# exit
-[root@server2 website]# docker commit myapacheserver2 lisemara/my-http:2.0
-
-[root@server2 website]# docker images | grep lisemara
 
 
-[root@server2 website]# docker push lisemara/my-http:2.0
+[root@server2 website]# docker commit myapacheserver4 k330sh/myhttp:2.0
+
+[root@server2 website]# docker images | grep k330sh
+
+[root@server2 website]# docker push k330sh/myhttp:2.0
